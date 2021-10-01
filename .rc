@@ -1,0 +1,81 @@
+#!/usr/bin/env zsh
+
+unalias mf;
+unalias md;
+unalias ascii;
+unalias g;
+unalias k;
+unalias d;
+unalias l;
+unalias c;
+
+mf()
+{
+	S="${@}";
+	s=;
+
+	for s in "${S}";
+	do
+		if [ -e "${s}" ];
+		then
+			printf '%s\n' "${s}: file exists";
+		else
+			:> "${s}";
+			printf '\n' >> "${s}";
+		fi;
+	done;
+}; # mf, mkfl, makefiles
+# mf	make files
+# touch tempers with the timestamps. mkfile does not create empty files. Sometimes, that's all you need.
+
+md()
+{
+	#d=${1} && n=${2}; #m=${1};
+	n=${1};
+	i=0;
+	j=0;
+
+	for (( i = 0; i <= ${n}; i++ ));
+	do
+		printf -v j '%02d' ${i}; #printf -v j "%0${d}d" ${i}; #printf -v j "%0${m}d" ${i};
+		mkdir ex${j};
+	done; #printf 'debug\t'; m=3; n=20; for (( i = 0; i <= ${n}; i++ )); do printf -v j "%0${m}d\n" ${i}; printf '%s\n' ${j}; done;
+}; # md, mkdr, makedirectories
+# md	make (the) directories
+
+ascii()
+{
+	i=0;
+
+	case ${1} in
+		printable | p | --printable | -p )
+			for (( i = 32; i < 127; i++ ));
+			do
+				printf \\$(printf %03o ${i};);
+			done;;
+		* )
+			printf '%s' "${1}: option does not exist";;
+	esac;
+	printf '\n';
+};
+
+alias g='git';
+alias k='[ -e ./0 ] && rm 0; gcc -o 0 *.c && ./0; rm 0;';
+alias d='cd';
+alias l='ls -a --color=auto';
+alias c="printf '\033[2J\033[3J\033[1;1H';";
+
+# Filename:		.rc
+# Title:		Karl's Runcom
+# Version:		2.10 (season-01-arc-01-mar-2021-11)
+# Description:	A runcom for the projects of Qwasar Silicon Valley.
+#
+# Author:		Karl `kvpb`
+# Telephone:	+33 A BB BB BB BB
+# Email:		local-part@domain
+# LinkedIn:		https://www.linkedin.com/in/karlbertin/
+# Instagram:	https://www.instagram.com/karlbertin/
+# TikTok:		https://vm.tiktok.com/ZSwAmcFh/
+# Qwasar:		https://upskill.us.qwasar.io/users/bertin_k
+#
+# 
